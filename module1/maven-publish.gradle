@@ -1,16 +1,18 @@
 apply plugin: 'maven-publish'
 
-def groupIdName = 'com.ayabenz.packing'
+def groupIdName = 'com.ayabenz'
 
 afterEvaluate {
     publishing {
         repositories {
             maven {
                 name = "github"
-                url = uri("https://maven.pkg.github.com/ayabenz/Packing")
+                url = uri("https://maven.pkg.github.com/ayabenz/packing")
                 credentials {
-                    username = "ayabenz"
-                    password = "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"
+//                    username = "ayabenz"
+//                    password = "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"
+                    username = project.hasProperty("GITHUB_ACTOR") ? GITHUB_ACTOR : ""
+                    password = project.hasProperty("GITHUB_REPO_PAT") ? GITHUB_REPO_PAT : ""
                 }
             }
         }
